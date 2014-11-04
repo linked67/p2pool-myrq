@@ -18,7 +18,7 @@ class Protocol(p2protocol.Protocol):
     
     def connectionMade(self):
         self.send_version(
-            version=80008,
+            version=70002,
             services=1,
             time=int(time.time()),
             addr_to=dict(
@@ -126,8 +126,10 @@ class Protocol(p2protocol.Protocol):
         for header in headers:
             header = header['header']
             self.get_block_header.got_response(bitcoin_data.hash256(bitcoin_data.block_header_type.pack(header)), header)
-        self.factory.new_headers.happened([header['header'] for header in headers])
-    
+        
+
+            self.factory.new_headers.happened([header['header'] for header in headers])
+        
     message_ping = pack.ComposedType([
         ('nonce', pack.IntType(64)),
     ])

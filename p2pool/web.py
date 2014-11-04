@@ -181,6 +181,7 @@ def get_web_root(wb, datadir_path, bitcoind_getinfo_var, stop_event=variable.Eve
             version=p2pool.__version__,
             protocol_version=p2p.Protocol.VERSION,
             fee=wb.worker_fee,
+            block_height=node.bitcoind_work.value['height'],
         )
     
     class WebInterface(deferred_resource.DeferredResource):
